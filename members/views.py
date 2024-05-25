@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect       
 from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
+from django.urls import reverse
 
 
 def login_user(request):
@@ -11,7 +12,7 @@ def login_user(request):
         if user is not None:
             login(request, user)
             messages.success(request, 'You are now logged in')
-            return redirect('home')
+            return redirect(reverse('denial_posting:dashboard'))
         else:
             messages.success(request, 'Invalid credentials')
             return redirect('login_user')
